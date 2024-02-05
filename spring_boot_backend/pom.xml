@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>spring_boot_backend_template</artifactId>
-	<version>0.0.1</version>
-	<name>spring_boot_backend_template</name>
-	<description>Template Project for Spring Boot based Backend </description>
+	<artifactId>spring_boot_ems_backend</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>spring_boot_ems_backend</name>
+	<description>EMS with E-R , patch mapping  custom annotation for validation,upload emp dtls n image  upload  using requestpart, localdatetime </description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -52,7 +52,8 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
+		
+		<!-- Swagger UI -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
@@ -64,11 +65,13 @@
 			<artifactId>modelmapper</artifactId>
 			<version>3.0.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.11.0</version>
+			<version>2.15.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>

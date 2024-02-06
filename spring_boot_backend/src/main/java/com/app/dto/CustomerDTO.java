@@ -49,6 +49,4 @@ public class CustomerDTO
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	private LocalDate dateOfBirth;
 	
-	
-	
 }

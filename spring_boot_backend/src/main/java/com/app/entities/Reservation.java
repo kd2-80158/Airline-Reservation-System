@@ -18,7 +18,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Reservation //extends BaseEntity
+public class Reservation extends BaseEntity
 {
 	
 	private int reservationId;

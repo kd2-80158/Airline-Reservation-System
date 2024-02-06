@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>spring_boot_ems_backend</artifactId>
+	<artifactId>spring_boot_backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring_boot_ems_backend</name>
+	<name>spring_boot_backend</name>
 	<description>EMS with E-R , patch mapping  custom annotation for validation,upload emp dtls n image  upload  using requestpart, localdatetime </description>
 	<properties>
 		<java.version>11</java.version>

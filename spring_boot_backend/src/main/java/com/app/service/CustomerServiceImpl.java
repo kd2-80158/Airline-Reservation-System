@@ -9,8 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_exceptions.ApiException;
 import com.app.dao.CustomerDao;
+import com.app.dto.ApiResponse;
 import com.app.dto.CustomerDTO;
-import com.app.entities.Customer;
+import com.app.entities.User;
 
 @Service
 @Transactional
@@ -28,12 +29,18 @@ public class CustomerServiceImpl implements CustomerService
 		System.out.println("Service impl" + dto);
 		if(dto.getPassword().equals(dto.getConfirmPassword()))
 		{
-			Customer custEntity = mapper.map(dto, Customer.class);
-			Customer savedCustomer = custDao.save(custEntity);
+			User custEntity = mapper.map(dto, User.class);
+			User savedCustomer = custDao.save(custEntity);
 			System.out.println("customer entity id" + custEntity.getId() + " " +savedCustomer.getId());;
 			return mapper.map(savedCustomer, CustomerDTO.class);
 		}
 		throw new ApiException("Password don't match");
+	}
+
+	@Override
+	public ApiResponse deleteCustDetails(Long custId) {
+		
+		return null;
 	}
 
 }

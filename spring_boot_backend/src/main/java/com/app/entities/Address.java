@@ -12,7 +12,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+<<<<<<< HEAD
 public class Address {//extends BaseEntity {
+=======
+public class Address extends BaseEntity {
+>>>>>>> main
 	
 	@Column(name="city", length=30,nullable=false)
 	private String cityName;
@@ -23,4 +27,62 @@ public class Address {//extends BaseEntity {
 	@Column(nullable=false)
 	private String country;
 	
+<<<<<<< HEAD
+=======
+	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
+	@JoinColumn(name="user_id")
+	private User user;
+
+	public Address(String cityName, int pincode, String state, String country) {
+		super();
+		this.cityName = cityName;
+		this.pincode = pincode;
+		this.state = state;
+		this.country = country;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public int getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(int pincode) {
+		this.pincode = pincode;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
+	
+>>>>>>> main
 }

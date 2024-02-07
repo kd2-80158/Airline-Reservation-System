@@ -39,7 +39,10 @@ public class CustomerServiceImpl implements CustomerService
 
 	@Override
 	public ApiResponse deleteCustDetails(Long custId) {
+<<<<<<< HEAD
 		
+=======
+>>>>>>> main
 		return null;
 	}
 

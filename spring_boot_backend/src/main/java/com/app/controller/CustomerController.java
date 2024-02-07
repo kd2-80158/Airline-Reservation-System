@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.CustomerDTO;
+<<<<<<< HEAD
 import com.app.dto.LoginDTO;
 import com.app.service.CustomerService;
 import com.app.service.LoginService;
+=======
+import com.app.service.CustomerService;
+>>>>>>> main
 
 
 
@@ -28,9 +32,12 @@ public class CustomerController
 	@Autowired
 	private CustomerService customerService;
 	
+<<<<<<< HEAD
 	@Autowired
 	private LoginService loginservice;
 	
+=======
+>>>>>>> main
 	// 1. Add new customer
 	@PostMapping
 	public ResponseEntity<?> addNewCustomer(@RequestBody @Valid CustomerDTO dto)
@@ -46,6 +53,7 @@ public class CustomerController
 		System.out.println("in delete customer " + custId);
 		return ResponseEntity.ok(customerService.deleteCustDetails(custId));
 	}
+<<<<<<< HEAD
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> checkLoginDetails(@RequestBody LoginDTO ldto)
@@ -53,4 +61,6 @@ public class CustomerController
 		System.out.println("in login "+ldto);
 		return ResponseEntity.ok(loginservice.checkLoginDetails(ldto));
 	}
+=======
+>>>>>>> main
 }

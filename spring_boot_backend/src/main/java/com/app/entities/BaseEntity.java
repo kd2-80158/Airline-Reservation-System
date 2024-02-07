@@ -14,5 +14,4 @@ public class BaseEntity {
 	private Long id;
 	@Version
 	private Long version;
-
 }

@@ -41,10 +41,4 @@ public class CustomerController
 		System.out.println("in delete customer " + custId);
 		return ResponseEntity.ok(customerService.deleteCustDetails(custId));
 	}
-	
-	// 3. Edit Customer
-	
-	// 4. Get Customer Details
-	
-	// 5. Get all Customer Details
 }

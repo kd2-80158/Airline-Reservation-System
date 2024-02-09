@@ -13,8 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.ApiResponse;
 import com.app.dto.CustomerDTO;
+
+import com.app.dto.LoginDTO;
 import com.app.service.CustomerService;
+import com.app.service.LoginService;
+
+import com.app.service.CustomerService;
+
 
 
 
@@ -26,6 +33,11 @@ public class CustomerController
 	@Autowired
 	private CustomerService customerService;
 	
+
+	@Autowired
+	private LoginService loginservice;
+	
+
 	// 1. Add new customer
 	@PostMapping
 	public ResponseEntity<?> addNewCustomer(@RequestBody @Valid CustomerDTO dto)
@@ -41,10 +53,20 @@ public class CustomerController
 		System.out.println("in delete customer " + custId);
 		return ResponseEntity.ok(customerService.deleteCustDetails(custId));
 	}
+
 	
-	// 3. Edit Customer
+	@PostMapping("/login")
+	public ResponseEntity<?> checkLoginDetails(@RequestBody LoginDTO ldto)
+	{
+		System.out.println("in login "+ldto);
+		return ResponseEntity.ok(loginservice.checkLoginDetails(ldto));
+	}
 	
-	// 4. Get Customer Details
+	@PostMapping("/otpviaEmail")
+	public ApiResponse sendOtpToEmail(@RequestBody String email)
+	{
+		return  customerService.sendOtpToMailService(email);
+	}
 	
-	// 5. Get all Customer Details
+
 }

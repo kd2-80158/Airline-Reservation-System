@@ -1,0 +1,124 @@
+
+body
+{
+  
+}
+
+.container
+{
+  display:flex;
+  flex-direction: column;
+  margin:auto;
+  margin-top: 50px;
+}
+
+.text
+{
+  color: lightcoral;
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.input1
+{
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 400px;
+  height: 50px;
+  border-radius: 6px;
+}
+
+.login-btn
+{
+  text-align: center;
+}
+
+.underline
+{
+  width:60px;
+  height:6px;
+  background: #0056b3;
+  text-align: center;
+  border-radius: 9px;
+}
+
+/* Main Container */
+#f-div {
+  width: 90%; /* Adjust width for responsiveness */
+  max-width: 600px; /* Set a maximum width */
+  margin: 8% auto; /* Center the container vertically and horizontally */
+  padding: 20px;
+  background-color: #ffffff; /* White background */
+  border: 2px solid #000000; /* Black border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* OTP Mark */
+#otpmark {
+  text-align: center; /* Center the OTP mark */
+}
+
+/* Form Container */
+#fid {
+  padding: 20px; /* Add padding for spacing */
+}
+
+/* Textarea */
+#f-textarea {
+  height: 250px;
+  width: 100%;
+  border: 2px solid #000000; /* Black border */
+  border-radius: 5px; /* Rounded corners */
+  resize: none; /* Disable textarea resizing */
+}
+
+/* Paragraph */
+.f-para {
+  text-align: center; /* Center the paragraph text */
+  margin-top: 20px; /* Add spacing from the top */
+}
+
+/* Button */
+#f-button {
+  display: block; /* Make the button a block element */
+  width: 50%; /* Set button width */
+  margin: 20px auto; /* Center the button */
+  padding: 10px 20px; /* Add padding */
+  border: none;
+  background-color: #007bff; /* Blue background */
+  color: #ffffff; /* White text color */
+  font-size: 16px;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#f-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Image */
+img {
+  display: block; /* Make the image a block element */
+  margin: 0 auto 20px; /* Center the image and add spacing below */
+  max-width: 100%; /* Ensure image does not exceed container width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Bottom Container */
+#b-div {
+  border: 1px solid black;
+  padding: 20px;
+  text-align: center; 
+}
+
+/* Logo */
+#logo {
+  width: 200px; 
+  margin-left: 0 auto;
+  cursor: pointer;
+}

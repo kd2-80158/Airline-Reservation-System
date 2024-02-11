@@ -1,6 +1,7 @@
+import './style.css';
 function Feedback() {
     return ( 
-        <div className="container">
+        <div className="container" id="f-div">
         <div className="table-responsive" id="fid">
         <table className="table table-bordered">
         <tr>

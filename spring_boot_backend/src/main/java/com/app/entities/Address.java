@@ -75,7 +75,5 @@ public class Address extends BaseEntity {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
-	
+
 }

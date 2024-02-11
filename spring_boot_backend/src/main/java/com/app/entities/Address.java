@@ -12,10 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-
-public class Address {//extends BaseEntity {
-
-
+public class Address extends BaseEntity {
 	
 	@Column(name="city", length=30,nullable=false)
 	private String cityName;
@@ -26,7 +23,6 @@ public class Address {//extends BaseEntity {
 	@Column(nullable=false)
 	private String country;
 	
-
 	@OneToOne(fetch = FetchType.LAZY)
 	@MapsId
 	@JoinColumn(name="user_id")
@@ -79,8 +75,5 @@ public class Address {//extends BaseEntity {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
-	
 
 }

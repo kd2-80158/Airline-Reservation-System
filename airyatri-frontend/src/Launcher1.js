@@ -14,7 +14,7 @@ import WhereWeFly from './WhereWeFly';
 import TravelGuide from './TravelGuide';
 import './newstyle.css'; // Import your custom CSS file for styling
 
-function Launcher() {
+function Launcher1() {
     
     return (
         <div className="container">
@@ -54,4 +54,4 @@ function Launcher() {
     );
 }
 
-export default Launcher;
+export default Launcher1;

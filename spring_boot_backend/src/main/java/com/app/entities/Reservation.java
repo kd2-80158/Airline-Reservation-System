@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Reservation extends BaseEntity
+public class Reservation
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

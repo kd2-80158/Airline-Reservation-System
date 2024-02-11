@@ -12,26 +12,29 @@ import SignUp from './SignUp';
 import BookAPackage from './BookAPackage';
 import WhereWeFly from './WhereWeFly';
 import TravelGuide from './TravelGuide';
+import './newstyle.css'; // Import your custom CSS file for styling
 
 function Launcher() {
+    
     return (
         <div className="container">
-            <div id="logo">
-                <Link to="/home">
-                    <img src="airyatri-logo.jpeg" alt="Airyatri Logo" />
+            <div className="header">
+                <Link to="/home" className="logo-link">
+                    <img src="airyatri-logo.jpeg" alt="Airyatri Logo" className="logo" />
                 </Link>
+                <nav className="nav-links">
+                    <Link to="/home" className="nav-link">Home</Link>
+                    <Link to="/signin" className="nav-link">Login</Link>
+                    <Link to="/managebookings" className="nav-link">Manage Bookings</Link>
+                    <Link to="/signup" className="nav-link">Sign Up</Link>
+                    <Link to="/about" className="nav-link">About</Link>
+                    <Link to="/feedback" className="nav-link">Feedback</Link>
+                    <Link to="/BookAFlight" className="nav-link">Book A Flight</Link>
+                    <Link to="/bookapackage" className="nav-link">Book a Package</Link>
+                    <Link to="/wherewefly" className="nav-link">Where We Fly</Link>
+                    <Link to="/travelguide" className="nav-link">Travel Guide</Link>
+                </nav>
             </div>
-            <hr />
-            <Link to="/home">Home</Link>{" | "}
-            <Link to="/signin">Login</Link>{" | "}
-            <Link to="/managebookings">Manage Bookings</Link> {" | "}
-            <Link to="/signup">Sign Up</Link> {" | "}
-            <Link to="/about">About</Link>{" | "}
-            <Link to="/feedback">Feedback</Link>{" | "}
-            <Link to="/BookAFlight">Book A Flight</Link> {" | "}
-            <Link to="/bookapackage">Book a Package</Link> {" | "}
-            <Link to="/wherewefly">Where We Fly</Link> {" | "}
-            <Link to="/travelguide">Travel Guide</Link> {" | "}
             <hr />
             <Switch>
                 <Route exact path="/home" component={Home}></Route>

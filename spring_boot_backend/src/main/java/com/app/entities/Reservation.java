@@ -8,6 +8,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,23 +19,25 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
+@Table(name="reservation")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Reservation
+public class Reservation extends BaseEntity
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int reservationId;
 
-	
-	private int noOfSeats;
 	private LocalDate reservationDate;
+	
 	private double totalPrice;
-	@Enumerated(EnumType.STRING)
-	private Class classId;
+	
+	@OneToOne
+	@JoinColumn(name="user_id",nullable=false)
+	private User user;
+	
+	private PaymentStatus pStatus=PaymentStatus.NOTCOMPLETED;
+	
 	
 	
 }

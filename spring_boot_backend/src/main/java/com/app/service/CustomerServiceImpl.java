@@ -50,6 +50,7 @@ public class CustomerServiceImpl implements CustomerService
 	@Override
 	public ApiResponse deleteCustDetails(Long custId) {
 
+
 		return null;
 	}
 
@@ -63,7 +64,6 @@ public class CustomerServiceImpl implements CustomerService
 		} catch (MessagingException e) {
 			throw new RuntimeException("Unable to send otp");
 		}
-		
 		return null;
 	}
 

@@ -54,15 +54,20 @@ function SignUp() {
         setSelectedValue(value); 
     };
 
-    return (<div className="container">
-                <hr></hr>
+    return (
+    
+    <div className="container">
+
                 <div className="table-responsive">
                     <table className="table table-bordered">
                         <tbody>
                             <tr>
+                                <th>Customer Registration</th>
+                            </tr>
+                            <tr>
                                 <td>First Name</td>
                                 <td>
-                                    <input type="text" name="firstName" value={user.firstName} onChange={OnTextChange}></input>
+                                    <input type="text" name="firstName" value={user.firstName} onChange={OnTextChange} ></input>
                                 </td>
                             </tr>
 

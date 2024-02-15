@@ -1,5 +1,7 @@
 package com.app.service;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
@@ -11,6 +13,7 @@ import com.app.custom_exceptions.ApiException;
 import com.app.dao.FlightDao;
 import com.app.dao.ReservationDao;
 import com.app.dao.UserDao;
+import com.app.dto.ApiResponse;
 import com.app.dto.ReservationDTO;
 import com.app.entities.Flight;
 import com.app.entities.Reservation;
@@ -53,5 +56,24 @@ public class ReservationServiceImpl implements ReservationService {
 		Reservation persistEntity = rDao.save(reservationEntity);
 		return mapper.map(persistEntity, ReservationDTO.class);
 	}
-
+	@Override
+	public ReservationDTO updateBooking(Long id, ReservationDTO rdto) {
+		
+		Reservation reservation = rDao.findById(id).orElseThrow(()-> new ApiException("No such reservation id found"));
+		
+		reservation.setReservationDate(rdto.getReservationDate());
+		reservation.setPStatus(rdto.getPStatus());
+		reservation.setTotalPrice(rdto.getTotalPrice());
+	    return mapper.map(reservation, ReservationDTO.class);
+	}
+	@Override
+	public ApiResponse deleteBooking(Long id) {
+		Optional<Reservation> reservation = rDao.findById(id);
+		if(reservation.isPresent())
+		{
+			System.out.println("inside if-statement of delete impl");
+			rDao.delete(reservation.get());
+		}
+		return new ApiResponse("Reservation is deleted");
+	}
 }

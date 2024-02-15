@@ -16,7 +16,7 @@ public class ApiResponse {
 	{
 		super();
 		this.message=message;
-		this.timeStamp=timeStamp;
+		this.timeStamp=timeStamp.now();
 	}
 
 }

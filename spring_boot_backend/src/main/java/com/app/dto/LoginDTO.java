@@ -2,6 +2,7 @@ package com.app.dto;
 
 import javax.validation.constraints.Email;
 
+import com.app.entities.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -18,7 +19,10 @@ public class LoginDTO {
 	@Email
 	private String email;
 	
-	@JsonProperty(access = Access.READ_ONLY) // serialize
+	@JsonProperty(access = Access.WRITE_ONLY) // serialize
 	private String password;
+	
+	@JsonProperty(access = Access.READ_ONLY) 
+	private Role role=Role.CUSTOMER;
 
 }

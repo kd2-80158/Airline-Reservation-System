@@ -6,12 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-@Embeddable
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@ToString
+@Entity
+@Table
 public class Address extends BaseEntity {
 	
 	@Column(name="city", length=30,nullable=false)

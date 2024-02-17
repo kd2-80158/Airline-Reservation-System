@@ -51,3 +51,29 @@
     background-color: rgba(0, 0, 255, 0.3); /* Semi-transparent blue color */
     z-index: 999; 
 }
+
+.image-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.image-table td {
+    padding: 20px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.image-table th {
+    text-align: center;
+}
+
+.image-table img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.image-table p {
+    margin-bottom: 0;
+}

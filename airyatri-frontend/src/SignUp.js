@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 function SignUp() {
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState({firstName :  "", lastName : "",   email : "", mobileNo : "", gender : "", dateOfBirth : "" , password : "", confirmPassword : ""});
     const [message, setMessage] = useState("");
+    const [redirect, setRedirect] = useState(false);
 
     const OnTextChange = (args)=>{
         var user1 = {...user};
@@ -30,6 +32,7 @@ function SignUp() {
             if(result.data.affectedRows!==undefined &&
                 result.data.affectedRows > 0)
                 {
+
                     console.log("3");
                     console.log("In post " +result.data.affectedRows)
                     ClearBoxes();
@@ -37,7 +40,7 @@ function SignUp() {
                 }
         })
     }
-    
+
     const ClearBoxes=()=>
     {
         setUser({firstName :  "", lastName : "",   email : "", mobileNo : "", gender : "", dateOfBirth : "" , password : "", confirmPassword : ""});

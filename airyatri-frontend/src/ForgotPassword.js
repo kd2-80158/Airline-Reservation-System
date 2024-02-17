@@ -1,50 +1,69 @@
 import { useState } from "react";
 import axios from "axios";
-import "./index.css";
-function ForgotPassword() {
-    const [pwds, setPwds] = useState("");
-    const [pwd, setPwd] = useState({password : ""});
+import { useHistory } from "react-router-dom";
 
-    const OnTextChange = (args)=>{
-        var user1 = {...pwd};
-        user1[args.target.name] = args.target.value;
-        setPwd(user1)
-    }
-    return (<div className="container">
-            <hr></hr>
+function ForgotPassword() {
+    const [email, setEmail] = useState("");
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(false);
+    const history = useHistory();
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value); // Update the email state when it changes
+    };
+
+    const sendVerificationLink = () => {
+        setError(null);
+        axios.post("http://localhost:8080/reset-password", { email })
+            .then((response) => {
+                setSuccess(true);
+                history.push(`/ResetPassword?email=${email}`); // Pass the email as a URL parameter to the next page
+            })
+            .catch((error) => {
+                setError("Failed to send verification link. Please try again.");
+            });
+    };
+
+    return (
+        <div className="container">
+            <hr />
             <div className="table-responsive">
-                <table className="table table-bordered">
+                <table className="table table-striped">
                     <tbody>
                         <tr>
                             <td colSpan={2}><h1>Forgot your password?</h1></td>
                         </tr>
                         <tr>
                             <td colSpan={2}>
-                                <p>Please enter the email address associated 
-                                with your account. We will send a verification link to continue.
-                                </p>
+                                <p>Please enter the email address associated with your account. We will send a verification link to continue.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Email Address</td>
-                            <td><input type="email" name="password" value={pwd.password} onChange={OnTextChange}></input></td>
+                            <td><input type="email" value={email} onChange={handleEmailChange} /></td>
                         </tr>
                         <tr>
-                            
-                            <td colSpan={2} id="td1"><button className="btn  
-                                            btn-info"  
-                                            onClick={()=>{
-                                            
-                                            }}>
-                                                 
-                                                Send Verification Link
-                                            </button>
+                            <td colSpan={2}>
+                                <button className="btn btn-info" onClick={sendVerificationLink}>
+                                    Send Verification Link
+                                </button>
                             </td>
                         </tr>
+                        {error && (
+                            <tr>
+                                <td colSpan={2} className="text-danger">{error}</td>
+                            </tr>
+                        )}
+                        {success && (
+                            <tr>
+                                <td colSpan={2} className="text-success">Verification link sent successfully!</td>
+                            </tr>
+                        )}
                     </tbody>
                 </table>
             </div>
-            </div>);
+        </div>
+    );
 }
 
 export default ForgotPassword;

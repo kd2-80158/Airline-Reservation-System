@@ -1,54 +1,80 @@
+import React, { useState, useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+import axios from "axios";
 
 function BookAFlight() {
-    return ( 
-        <div className="container" >
-            <div classname="class-responsive" id="b-div">
-            <table className="table">
-                <tr>
-                    <td>
-             <input type="radio" value="One-Way" id="b-trip" name="trip"/>
-             <label for="b-trip">One-Way</label>
-             </td>
-             <td>
-             <input type="radio" value="Two-Way" id="b-trip"name="trip"/>
-             <label for="b-trip">Two-Way</label>
-             </td>
-             <td></td>
-             </tr>
-             <tr>
-                <td>FROM</td>
-                <td>TO</td>
-                <td>DEPARTURE</td>
-                <td>RETURN</td>
-                <td>PASSENGER</td>
-                <td>CLASS</td>
-             </tr>
-             <tr>
-                <td><input type="text" name="from"/> </td>
-                <td><input type="text" name="to"/> </td>
-                <td><input type="date" name="departure"/> </td>
-                <td><input type="date" name="return"/> </td>
-                <td><input type="number" name="passenger"/> </td>
-                <td><select name="class" id="class">
-    <option value="economy">Economy</option>
-    <option value="Business">Business</option>
-    <option value="VIP">VIP</option>
-  </select> </td>
-             </tr>
-             <br></br>
-             <br></br>
-             <br></br>
-             <tr>
-                <td></td>
-                <td></td>
-                <button className="btn btn-success">Update Search</button>
-                <td></td>
-                <td></td>
-             </tr>
-             </table> 
+    const history = useHistory();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const from = queryParams.get("from");
+    const to = queryParams.get("to");
+
+    const [flights, setFlights] = useState([]);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchFlights = async () => {
+            try {
+                if (!from || !to) {
+                    setError("Departure and arrival cities are required.");
+                    return;
+                }
+
+                const response = await axios.get('http://localhost:8080/location/find', {
+                    params: {
+                        departureCity: from,
+                        arrivalCity: to
+                    }
+                });
+
+                setFlights(response.data);
+            } catch (error) {
+                console.error("Error fetching flights:", error);
+                setError("An error occurred while fetching flights.");
+            }
+        };
+
+        fetchFlights();
+    }, [from, to]);
+
+    const bookFlight = (flightId) => {
+
+      history.push(`/FlightBooking/${flightId}`);
+  };
+
+    return (
+        <div className="container">
+            <div className="table-responsive">
+                {error && <div className="alert alert-danger">{error}</div>}
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Flight ID</th>
+                            <th>Departure Location</th>
+                            <th>Arrival Location</th>
+                            <th>No. of Seats</th>
+                            <th>Departure Time</th>
+                            <th>Arrival Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {flights.map(flight => (
+                            <tr key={flight.flightId}>
+                                <td>{flight.flightId}</td>
+                                <td>{flight.departureLocationId.city}</td>
+                                <td>{flight.arrivalLocationId.city}</td>
+                                <td>{flight.noOfSeats}</td>
+                                <td>{flight.departureTime}</td>
+                                <td>{flight.arrivalTime}</td>
+                                <td><button className="btn btn-success" onClick={() => bookFlight(flight.flightId)}>Book</button></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </div>
-     );
+    );
 }
 
 export default BookAFlight;

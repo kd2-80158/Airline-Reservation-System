@@ -1,21 +1,26 @@
 import { useState } from 'react';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 import Home from './Home';
-import { Link } from 'react-router-dom';
-
+import { useHistory, Link, Redirect } from "react-router-dom";
 function SignIn() {
     const url = "http://localhost:8080/customer/login";
     const [user, setUser] = useState({email:"", password:""});
     const [redirect, setRedirect] = useState(false);
     const [error, setError] = useState("");
+    const history = useHistory();
 
     const login = () => {
         axios.post(url, user)
             .then((result) => {
                 console.log(result.data.message);
                 if(result.data.message === "admin") {
+                    localStorage.setItem('username', user.email);
+                    history.push('/Admin');
+                } 
+                if(result.data.message === "customer") {
+                    localStorage.setItem('username', user.email);
+                    history.push('/Home');
                     setRedirect(true);
                 } 
                 else {
@@ -31,7 +36,6 @@ function SignIn() {
     const reset = () => {
         setUser({email:"", password:""});
     };
-
     const OnTextChange = (event) => {
         const { name, value } = event.target;
         setUser({...user, [name]: value});
@@ -40,7 +44,6 @@ function SignIn() {
     if (redirect) {
         return <Redirect to="/Admin" />;
     }
-
     return (        
         <center>
             <div className="container">
@@ -83,5 +86,4 @@ function SignIn() {
         </center>
     );
 }
-
 export default SignIn;

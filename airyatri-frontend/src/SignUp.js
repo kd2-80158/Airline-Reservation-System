@@ -1,11 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory,Redirect } from "react-router-dom";
 
 function SignUp() {
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState({firstName :  "", lastName : "",   email : "", mobileNo : "", gender : "", dateOfBirth : "" , password : "", confirmPassword : ""});
     const [message, setMessage] = useState("");
+    const [redirect, setRedirect] = useState(false);
 
     const OnTextChange = (args)=>{
         var user1 = {...user};
@@ -36,6 +37,9 @@ function SignUp() {
             console.log("result: " +result.data);
             if(result.status===201)
                 {
+                    console.log("In post " +result.data.affectedRows)
+                    ClearBoxes();
+                    ShowMessage("Sign Up Successful");
                     history.push('/signin');
                     // console.log("3");
                     // console.log("In post " +result.data.affectedRows)
@@ -61,8 +65,6 @@ function SignUp() {
     const handleRadioChange = (value) => {
         setSelectedValue(value);
     };
-    
-
     return (
     
     <div className="container">

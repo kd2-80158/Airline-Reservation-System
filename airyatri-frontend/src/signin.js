@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 import Home from './Home';
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, Redirect } from "react-router-dom";
 function SignIn() {
     const url = "http://localhost:8080/customer/login";
     const [user, setUser] = useState({email:"", password:""});
@@ -22,6 +21,7 @@ function SignIn() {
                 if(result.data.message === "customer") {
                     localStorage.setItem('username', user.email);
                     history.push('/Home');
+                    setRedirect(true);
                 } 
                 else {
                     setError("Invalid credentials"); // Provide feedback to user
@@ -39,6 +39,10 @@ function SignIn() {
     const OnTextChange = (event) => {
         const { name, value } = event.target;
         setUser({...user, [name]: value});
+    };
+
+    if (redirect) {
+        return <Redirect to="/Admin" />;
     }
     return (        
         <center>

@@ -21,6 +21,9 @@ function Admin() {
                     history.push('/Home');
                 }
                 else {
+                if (result.data.message === "admin") {
+                    setRedirect(true);
+                } else {
                     setError("No session found. Please login.");
                 }
             })
@@ -61,6 +64,31 @@ function Admin() {
                 // Handle error appropriately (e.g., show error message)
             });
     };
+        // Add logic to navigate to the add flight page or perform related actions
+        history.push('/addflight')
+    };
+
+    const handleModifyFlight = () => {
+        // Add logic to navigate to the modify flight page or perform related actions
+
+    };
+
+    const handleAddNewSeat = () => {
+        // Add logic to navigate to the add new seat page or perform related actions
+    };
+
+    const handleDeleteFlight = () => {
+        // Add logic to delete a flight or perform related actions
+    };
+
+    const handleFindAllFlight = () => {
+        // Add logic to find all flights or perform related actions
+    };
+
+    if (redirect) {
+        return <Redirect to="/Home" />;
+    }
+
     return ( 
         <div className="container">
             <div className="row justify-content-center mt-5">
@@ -94,6 +122,19 @@ function Admin() {
                                     <button className="btn btn-link" onClick={handleFindAllFlight}>
                                         <FontAwesomeIcon icon={faSearch} /> Find All Flight
                                     </button>
+                                    <button className="btn btn-success btn-block" onClick={handleAddFlight}>Add Flight</button>
+                                </li>
+                                <li className="list-group-item">
+                                    <button className="btn btn-warning btn-block" onClick={handleModifyFlight}>Modify Flight</button>
+                                </li>
+                                <li className="list-group-item">
+                                    <button className="btn btn-success btn-block" onClick={handleAddNewSeat}>Add New Seat</button>
+                                </li>
+                                <li className="list-group-item">
+                                    <button className="btn btn-success btn-block" onClick={handleDeleteFlight}>Delete Flight</button>
+                                </li>
+                                <li className="list-group-item">
+                                    <button className="btn btn-success btn-block" onClick={handleFindAllFlight}>Find All Flight</button>
                                 </li>
                             </ul>
                         </div>

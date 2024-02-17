@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { useHistory,Redirect } from "react-router-dom";
 
 function SignUp() {
     const [users, setUsers] = useState([]);
@@ -14,6 +14,8 @@ function SignUp() {
         setUser(user1)
     }
 
+    const history = useHistory();
+
     const url = "http://127.0.0.1:8080/customer";
 
     const ShowMessage = (msgText)=>{
@@ -21,24 +23,33 @@ function SignUp() {
         window.setTimeout(()=>{
             setMessage("");
             console.log("Inside show message " + msgText);
-        },10000);
+        },1000);
     }
     const Register=()=>
     {
+        const userData = {
+            ...user,
+            gender: selectedValue
+        }
         console.log("1");
-        axios.post(url,user).then((result)=>{
+        axios.post(url,userData).then((result)=>{
             console.log("2");
             console.log("result: " +result.data);
-            if(result.data.affectedRows!==undefined &&
-                result.data.affectedRows > 0)
+            if(result.status===201)
                 {
-
-                    console.log("3");
                     console.log("In post " +result.data.affectedRows)
                     ClearBoxes();
                     ShowMessage("Sign Up Successful");
+                    history.push('/signin');
+                    // console.log("3");
+                    // console.log("In post " +result.data.affectedRows)
+                    // ClearBoxes();
+                    // ShowMessage("Sign Up Successful");
                 }
-        })
+            })
+            .catch((error) => {
+                ShowMessage("Error occoured while signing up");
+            })
     }
 
     const ClearBoxes=()=>
@@ -49,14 +60,11 @@ function SignUp() {
     const [ 
         selectedValue, 
         setSelectedValue, 
-    ] = useState("option1"); 
+    ] = useState("Male"); 
   
-    const handleRadioChange = ( 
-        value 
-    ) => { 
-        setSelectedValue(value); 
+    const handleRadioChange = (value) => {
+        setSelectedValue(value);
     };
-
     return (
     
     <div className="container">
@@ -70,14 +78,14 @@ function SignUp() {
                             <tr>
                                 <td>First Name</td>
                                 <td>
-                                    <input type="text" name="firstName" value={user.firstName} onChange={OnTextChange} ></input>
+                                    <input type="text" name="firstName" value={user.firstName} onChange={OnTextChange} required></input>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>Last Name</td>
                                 <td>
-                                    <input type="text" name="lastName" value={user.lastName} onChange={OnTextChange}></input>
+                                    <input type="text" name="lastName" value={user.lastName} onChange={OnTextChange} required></input>
                                 </td>
                             </tr>
 
@@ -85,28 +93,28 @@ function SignUp() {
                             <tr>
                                 <td>Mobile No</td>
                                 <td>
-                                    <input type="number" name="mobileNo" value={user.mobileNo} onChange={OnTextChange}></input>
+                                    <input type="number" name="mobileNo" value={user.mobileNo} onChange={OnTextChange} required></input>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>Gender</td>
                                 <td>
-                                <input type="radio" id="option1" value="option1" checked={ selectedValue === "option1"} 
-                                onChange={() => handleRadioChange( "option1") } /> 
-                                <label htmlFor="option1"> 
+                                <input type="radio" id="Male" value="Male" checked={ selectedValue === "Male"} 
+                                onChange={() => handleRadioChange( "Male") } /> 
+                                <label htmlFor="Male"> 
                                 Male
                                 </label> 
 
-                                <input type="radio" id="option2" value="option2" checked={ selectedValue === "option2"} 
-                                onChange={() => handleRadioChange( "option2") } /> 
-                                <label htmlFor="option2"> 
+                                <input type="radio" id="Female" value="Female" checked={ selectedValue === "Female"} 
+                                onChange={() => handleRadioChange( "Female") } /> 
+                                <label htmlFor="Female"> 
                                 Female
                                 </label> 
 
-                                <input type="radio" id="option3" value="option3" checked={ selectedValue === "option3"} 
-                                onChange={() => handleRadioChange( "option3") } /> 
-                                <label htmlFor="option3"> 
+                                <input type="radio" id="Other" value="Other" checked={ selectedValue === "Other"} 
+                                onChange={() => handleRadioChange( "Other") } /> 
+                                <label htmlFor="Other"> 
                                 Other
                                 </label>
                                 </td>
@@ -115,14 +123,14 @@ function SignUp() {
                             <tr>
                                 <td>Date of Birth</td>
                                 <td>
-                                    <input type="date" name="dateOfBirth" value={user.dateOfBirth} onChange={OnTextChange}></input>
+                                    <input type="date" name="dateOfBirth" value={user.dateOfBirth} onChange={OnTextChange} required></input>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>Email</td>
                                 <td>
-                                    <input type="text" name="email" value={user.email} onChange={OnTextChange}></input>
+                                    <input type="text" name="email" value={user.email} onChange={OnTextChange} required></input>
                                 </td>
                             </tr>
 
@@ -130,14 +138,14 @@ function SignUp() {
                             <tr>
                                 <td>Password</td>
                                 <td>
-                                    <input type="password" name="password" value={user.password} onChange={OnTextChange}></input>
+                                    <input type="password" name="password" value={user.password} onChange={OnTextChange} required></input>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>Confirm Password</td>
                                 <td>
-                                    <input type="password" name="confirmPassword" value={user.confirmPassword} onChange={OnTextChange}></input>
+                                    <input type="password" name="confirmPassword" value={user.confirmPassword} onChange={OnTextChange} required></input>
                                 </td>
                             </tr>
                             <tr>

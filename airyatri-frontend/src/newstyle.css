@@ -72,7 +72,6 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
 .slide {
     width: 200px;
     height: 300px;
@@ -112,4 +111,29 @@ body {
     align-items: center;
     transform: rotateY(0deg);
     transition: transform 0.5s;
+}
+.image-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.image-table td {
+    padding: 20px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.image-table th {
+    text-align: center;
+}
+
+.image-table img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.image-table p {
+    margin-bottom: 0;
 }

@@ -20,6 +20,7 @@ import FindAllFlights from './Admin/FindAllFlights';
 import AddNewSeat from './Admin/AddNewSeat';
 import ResetPassword from './ResetPassword';
 import FlightBooking from './FlightBooking';
+
 function Launcher1() {
     
     return (
@@ -39,11 +40,11 @@ function Launcher1() {
                     <Link to="/wherewefly" className="nav-link">Where We Fly</Link>
                     <Link to="/travelguide" className="nav-link">Travel Guide</Link>
                     <Link to="/admin" className="nav-link">Admin</Link>
-
                 </nav>
             </div>
             <hr />
             <Switch>
+                <Route exact path="/" component={Home}></Route>
                 <Route exact path="/home" component={Home}></Route>
                 <Route exact path="/about" component={About}></Route>
                 <Route exact path="/signin" component={SignIn}></Route>
@@ -60,6 +61,7 @@ function Launcher1() {
                 <Route exact path='/Admin/FindAllFlights' component={FindAllFlights} />
                 <Route exact path='/Admin/AddNewSeat' component={AddNewSeat} />
                 <Route exact path='/ResetPassword' component={ResetPassword} />
+                <Route exact path='/addflight' component={AddFlight} />
                 {/* <Route exact path='/SignInPage' component={SignInPage} /> */}
                 <Route path="**" component={NotFound}></Route>
             </Switch>

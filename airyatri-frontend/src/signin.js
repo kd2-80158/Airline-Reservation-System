@@ -3,9 +3,10 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import Home from './Home';
+import { Link } from 'react-router-dom';
 
 function SignIn() {
-    const url = "http://localhost:8080/login";
+    const url = "http://localhost:8080/customer/login";
     const [user, setUser] = useState({email:"", password:""});
     const [redirect, setRedirect] = useState(false);
     const [error, setError] = useState("");
@@ -14,9 +15,10 @@ function SignIn() {
         axios.post(url, user)
             .then((result) => {
                 console.log(result.data.message);
-                if (result.data.message === "success") {
+                if(result.data.message === "admin") {
                     setRedirect(true);
-                } else {
+                } 
+                else {
                     setError("Invalid credentials"); // Provide feedback to user
                 }
             })
@@ -36,7 +38,7 @@ function SignIn() {
     };
 
     if (redirect) {
-        return <Redirect to="/Home" />;
+        return <Redirect to="/Admin" />;
     }
 
     return (        
@@ -71,8 +73,8 @@ function SignIn() {
                             <br></br>
                             <div>
                                     <p className="text-danger">{error}</p>
-                                    <a href='./ForgotPassword'>Forgot your password?</a> <br/><br/>
-                                    <a href='./Otp'>Request One Time Password(OTP)</a>
+                                    <Link to='./ForgotPassword'>Forgot your password?</Link> <br/><br/>
+                                    <Link to="./Otp">Request One Time Password(OTP)</Link>
                                     </div>
                         </tbody>
                     </table>

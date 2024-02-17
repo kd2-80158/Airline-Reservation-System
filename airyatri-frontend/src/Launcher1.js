@@ -12,6 +12,11 @@ import SignUp from './SignUp';
 import BookAPackage from './BookAPackage';
 import WhereWeFly from './WhereWeFly';
 import TravelGuide from './TravelGuide';
+import Admin from './Admin';
+import Otp from './Otp';
+import ForgotPassword from './ForgotPassword'
+import AddFlight from './Admin/AddFlight';
+// import SignInPage from './SignInPage';
 import './newstyle.css'; // Import your custom CSS file for styling
 
 function Launcher1() {
@@ -33,10 +38,15 @@ function Launcher1() {
                     <Link to="/bookapackage" className="nav-link">Book a Package</Link>
                     <Link to="/wherewefly" className="nav-link">Where We Fly</Link>
                     <Link to="/travelguide" className="nav-link">Travel Guide</Link>
+                    <Link to="/admin" className="nav-link">Admin</Link>
+                    {/* <Link to="/addflight" className="nav-link">Add Flight</Link> */}
+                    {/* <Link to="/SignInPage" className="nav-link">SigninPage</Link> */}
+
                 </nav>
             </div>
             <hr />
             <Switch>
+                <Route exact path="/" component={Home}></Route>
                 <Route exact path="/home" component={Home}></Route>
                 <Route exact path="/about" component={About}></Route>
                 <Route exact path="/signin" component={SignIn}></Route>
@@ -47,6 +57,11 @@ function Launcher1() {
                 <Route exact path='/bookapackage' component={BookAPackage} />
                 <Route exact path='/wherewefly' component={WhereWeFly} />
                 <Route exact path='/travelguide' component={TravelGuide} />
+                <Route exact path='/admin' component={Admin} />
+                <Route exact path='/Otp' component={Otp} />
+                <Route exact path='/ForgotPassword' component={ForgotPassword} />
+                <Route exact path='/addflight' component={AddFlight} />
+                {/* <Route exact path='/SignInPage' component={SignInPage} /> */}
                 <Route path="**" component={NotFound}></Route>
             </Switch>
             <br />

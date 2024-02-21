@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name="user")
@@ -25,6 +27,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+//17:02:2024--added to get user info in login(user service impl)
+@ToString
 public class User extends BaseEntity 
 {
 	@Column(length = 30)
@@ -54,7 +58,7 @@ public class User extends BaseEntity
 	private Role role=Role.CUSTOMER;
 	
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true /* , fetch = FetchType.EAGER */ )
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,fetch=FetchType.EAGER)
 	private List<Reservation> reservation = new ArrayList<>();
 	
 	public void addReservation(Reservation r) {

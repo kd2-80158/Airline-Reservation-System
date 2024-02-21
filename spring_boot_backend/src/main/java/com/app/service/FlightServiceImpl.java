@@ -2,6 +2,7 @@ package com.app.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -14,6 +15,7 @@ import com.app.dao.FlightDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.FlightDTO;
 import com.app.entities.Flight;
+import com.app.entities.Location;
 
 @Service
 @Transactional
@@ -81,6 +83,12 @@ public class FlightServiceImpl implements FlightService {
 
         
 		return new ApiResponse("Flight is deleted");
+	}
+
+	@Override
+	public Set<Flight> findByDepartureLocationIdAndArrivalLocationId(Location departureLocation,
+			Location arrivalLocation) {
+		 return fdao.findByDepartureLocationIdAndArrivalLocationId(departureLocation, arrivalLocation);
 	}
 
 	}

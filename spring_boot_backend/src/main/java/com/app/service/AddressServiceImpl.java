@@ -33,8 +33,8 @@ public class AddressServiceImpl implements AddressService {
 	private ModelMapper mapper;
 
 	@Override
-	public ApiResponse assignEmpAddress(@NotNull Long custId, @Valid AddressDTO address) {
-		User user = uDao.findById(custId).
+	public ApiResponse addAddress(@NotNull Long reservationId, @Valid AddressDTO address) {
+		User user = uDao.findById(reservationId).
 				orElseThrow(() -> new ApiException("Invalid customer"));
 		Address addressEntity = mapper.map(address, Address.class);
 		addressEntity.setUser(user);
@@ -51,8 +51,8 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
-	public ApiResponse updateEmpAddress(Long custId, @Valid AddressDTO address) {
-		Address addressEntity = adrRepo.findById(custId)
+	public ApiResponse updateAddress(Long reservationId, @Valid AddressDTO address) {
+		Address addressEntity = adrRepo.findById(reservationId)
 				.orElseThrow(() -> new ApiException("Address is not yet assigned !!!! "));
 	
 		mapper.map(address, addressEntity);

@@ -26,13 +26,6 @@ public class Application {
 		modelMapper.addConverter(new StringToDateConverter());
 		return modelMapper;
 	}
-	//configure PasswordEncoder bean 
-		@Bean
-		public PasswordEncoder passwordEncoder()
-		{
-			return new BCryptPasswordEncoder();
-		}
-
 	public class StringToDateConverter extends AbstractConverter<String,LocalDate> {
 	    @Override
 	    protected LocalDate convert(String source) {

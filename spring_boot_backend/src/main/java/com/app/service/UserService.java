@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import com.app.dto.ApiResponse;
 import com.app.dto.LoginDTO;
 import com.app.dto.UserDTO;
+import com.app.entities.User;
 
 
 public interface UserService {
@@ -20,8 +21,14 @@ public interface UserService {
 
 	ApiResponse sendOtpToMailService(String email);
 
-	ApiResponse checkLoginDetails(LoginDTO udto,HttpSession session);
+	UserDTO checkLoginDetails(LoginDTO udto);
 
 	boolean isValidUser(String email, String password);
+	
+	ApiResponse updatePassword(String email, String newPassword);
+
+	UserDTO getUserById(Long userId);
+	
+	
 
 }

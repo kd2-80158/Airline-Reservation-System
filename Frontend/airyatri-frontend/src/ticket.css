@@ -1,0 +1,82 @@
+.ticket-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff; /* Change background color */
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Increase shadow */
+    font-family: 'Arial', sans-serif;
+    position: relative; /* Add relative positioning */
+    overflow: hidden; /* Hide overflow */
+}
+
+.ticket-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-family: 'Arial Black', sans-serif;
+}
+
+.ticket-container p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555; /* Adjust text color */
+}
+
+.ticket-container ul {
+    margin-bottom: 20px;
+    list-style: none; /* Remove default list style */
+}
+
+.ticket-container button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold; /* Add font weight */
+}
+
+.ticket-container button:hover {
+    background-color: #0056b3;
+}
+
+.ticket-container input[type="email"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.ticket-container input[type="email"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+body {
+    background-image: url('https://www.example.com/background-image.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.company-logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 999; /* Ensure it's above other elements */
+}

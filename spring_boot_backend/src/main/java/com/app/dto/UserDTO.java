@@ -17,11 +17,17 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 
 public class UserDTO
 {
 	
+	@Override
+	public String toString() {
+		return "UserDTO [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", mobileNo=" + mobileNo + ", gender=" + gender + ", role=" + role + ", dateOfBirth=" + dateOfBirth
+				+ "]";
+	}
+
 	@JsonProperty(access = Access.READ_ONLY)  // used during serialization
 	private Long id;
 	
@@ -50,5 +56,6 @@ public class UserDTO
 	
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	private LocalDate dateOfBirth;
+	
 	
 }

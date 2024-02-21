@@ -4,14 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-
-import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,9 +33,6 @@ public class ReservationController {
 	
 	
 	//Update Booking
-
-	//Cancel Booking
-
 	@PutMapping("{id}")
 	public ResponseEntity<?> updateBooking(@PathVariable Long id, @RequestBody ReservationDTO rdto)
 	{
@@ -52,5 +45,16 @@ public class ReservationController {
 	{
 		return ResponseEntity.status(HttpStatus.OK).body(rService.deleteBooking(id));
 	}
-
+	
+	// Method to update payment status from NA to Completed
+    @PostMapping("/{reservationId}/updatePaymentStatus")
+    public ResponseEntity<String> updatePaymentStatus(@PathVariable Long reservationId) {
+        // Call the service layer to update the payment status
+        boolean updated = rService.updatePaymentStatus(reservationId);
+        if (updated) {
+            return new ResponseEntity<>("Payment status updated successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Failed to update payment status", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

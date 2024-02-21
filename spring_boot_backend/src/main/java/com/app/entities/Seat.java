@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,14 +23,11 @@ import lombok.Setter;
 @Setter
 public class Seat extends BaseEntity {
 	
-	// insert flight id here
-//	@OneToOne(cascade = CascadeType.ALL)
-//	private Flight flightId;
 	@Column(length = 30)
 	private double price;
 	@Enumerated(EnumType.STRING)
-	@Column(name = "seat_class", length = 10)
-	private Class seatClass;
+	@Column(name = "seat_class")
+	private SeatClass seatClass;
 	@Column(length = 10)
 	private boolean isOccupied;
 

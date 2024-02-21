@@ -13,9 +13,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class LoginDTO {
-	
-	
+public class LoginDTO {	
 	@Email
 	private String email;
 	

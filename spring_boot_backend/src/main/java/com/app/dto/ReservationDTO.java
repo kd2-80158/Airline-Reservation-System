@@ -2,10 +2,7 @@ package com.app.dto;
 
 import java.time.LocalDate;
 
-import com.app.entities.Flight;
 import com.app.entities.PaymentStatus;
-
-import com.app.entities.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -18,15 +15,18 @@ import lombok.ToString;
 @ToString
 public class ReservationDTO {
 	
+    @JsonProperty(access = Access.READ_ONLY)
+	private Long Id;
 	
-    private LocalDate reservationDate;
+	private LocalDate reservationDate;
 	
 	private double totalPrice;
 	
-	private Long userId;
+	private Long usersId;
 	
-	private String flightid;
+	private String flightId;
 
 	@JsonProperty(access = Access.READ_ONLY) 
-	private PaymentStatus pStatus=PaymentStatus.NA;
+	private PaymentStatus paymentStatus=PaymentStatus.NA;
+	
 }

@@ -31,7 +31,8 @@ public class FeedbackController {
     @PostMapping("/add")
     public ResponseEntity<String> addFeedback(@PathVariable Long custId, @RequestBody FeedbackDTO feedbackDTO) {
         // Assuming FeedbackService has a method to add feedback
-        feedbackService.addFeedback(custId, feedbackDTO);
+        System.out.println(custId);
+    	feedbackService.addFeedback(custId, feedbackDTO);
         return new ResponseEntity<>("Feedback added successfully", HttpStatus.CREATED);
     }
 

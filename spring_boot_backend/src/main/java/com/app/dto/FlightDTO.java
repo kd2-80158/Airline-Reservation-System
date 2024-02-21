@@ -1,47 +1,46 @@
 package com.app.dto;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.app.entities.LocalDateTimeDeserializer;
 import com.app.entities.Location;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class FlightDTO {
 
-private String flightId;
+    private String flightId;
 
-@NotBlank
-private Location departureLocationId;
-	
-@NotBlank
-private Location arrivalLocationId;
+    @NotNull
+    private Location departureLocationId;
+    
+    @NotNull
+    private Location arrivalLocationId;
 
-@NotBlank
-private int noOfSeats;
+    private Integer noOfSeats;
 
-@NotBlank
-private LocalDateTime departureTime;
-	
-@NotBlank
-private LocalDateTime arrivalTime;
+    private LocalDateTime departureTime;
+    
+    private LocalDateTime arrivalTime;
 
-@NotBlank
-@DateTimeFormat(pattern = "yyyy-mm-dd")
-private LocalDate departureDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate departureDate;
 
-@NotBlank
-@DateTimeFormat(pattern = "yyyy-mm-dd")
-private LocalDate returnDate;
-			
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate returnDate;   
 }
-

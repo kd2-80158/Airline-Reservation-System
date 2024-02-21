@@ -14,7 +14,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class AddressDTO {
-	private String cityName;
+	private String city;
 	
 	private int pincode;
 	

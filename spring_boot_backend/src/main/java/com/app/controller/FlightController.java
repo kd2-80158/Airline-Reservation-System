@@ -25,7 +25,7 @@ public class FlightController {
 	
 	@Autowired
 	private FlightService flightService;
-	
+
 	
 	@GetMapping
 	public List<FlightDTO> getAllFlights()

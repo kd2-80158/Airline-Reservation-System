@@ -16,6 +16,8 @@ import Admin from './Admin';
 import Otp from './Otp';
 import ForgotPassword from './ForgotPassword'
 import AddFlight from './Admin/AddFlight';
+import CustomerProfile from './CustomerProfile';
+import Contact from './Contact';
 // import SignInPage from './SignInPage';
 import './newstyle.css'; // Import your custom CSS file for styling
 
@@ -39,6 +41,8 @@ function Launcher1() {
                     <Link to="/wherewefly" className="nav-link">Where We Fly</Link>
                     <Link to="/travelguide" className="nav-link">Travel Guide</Link>
                     <Link to="/admin" className="nav-link">Admin</Link>
+                    <Link to="/customerprofile" className="nav-link">Customer Profile</Link>
+                    <Link to='/contact' className='nav-link'>Contact Us</Link>
                     {/* <Link to="/addflight" className="nav-link">Add Flight</Link> */}
                     {/* <Link to="/SignInPage" className="nav-link">SigninPage</Link> */}
 
@@ -61,6 +65,8 @@ function Launcher1() {
                 <Route exact path='/Otp' component={Otp} />
                 <Route exact path='/ForgotPassword' component={ForgotPassword} />
                 <Route exact path='/addflight' component={AddFlight} />
+                <Route exact path="/customerprofile" component={CustomerProfile}/>
+                <Route exact path="/contact" component={Contact}/>
                 {/* <Route exact path='/SignInPage' component={SignInPage} /> */}
                 <Route path="**" component={NotFound}></Route>
             </Switch>

@@ -59,11 +59,11 @@ function AddFlight({ onClose }) {
                     </div>
                     <div className="form-group">
                         <label>Departure Time:</label>
-                        <input type="time" className="form-control" value={departureTime} onChange={(e) => setDepartureTime(e.target.value)} required />
+                        <input type="datetime-local" className="form-control" value={departureTime} onChange={(e) => setDepartureTime(e.target.value)} required />
                     </div>
                     <div className="form-group">
                         <label>Arrival Time:</label>
-                        <input type="time" className="form-control" value={arrivalTime} onChange={(e) => setArrivalTime(e.target.value)} required />
+                        <input type="datetime-local" className="form-control" value={arrivalTime} onChange={(e) => setArrivalTime(e.target.value)} required />
                     </div>
                     <div className="form-group">
                         <label>Seats</label>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.dao.SeatDao;
 import com.app.entities.Seat;
+import com.app.entities.SeatClass;
 
 @Service
 @Transactional
@@ -34,6 +35,21 @@ public class SeatServiceImpl implements SeatService {
 		return sDao.save(seat);
 		
 	}
+
+	 @Override
+	    public double getBasePrice(SeatClass seatClass) {
+	        // Map the enum value to the corresponding string representation
+
+	        // Fetch the seat by seat class name
+	        Seat seat = sDao.findBySeatClass(seatClass);
+
+	        if (seat != null) {
+	            return seat.getPrice();
+	        } else {
+	            // Handle case where base price is not found
+	            throw new RuntimeException("Base price not found for seat class: " + seatClass);
+	        }
+	    }
 
 	
 }

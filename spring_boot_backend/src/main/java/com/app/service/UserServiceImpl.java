@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService
     }
 	
 	@Override
-	public ApiResponse checkLoginDetails(LoginDTO cdto, HttpSession session) {
+	public UserDTO checkLoginDetails(LoginDTO cdto)
 	{
 			System.out.println("inside service impl    ");
 			
@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService
 			System.out.println("user : "+user);
 			
 			if(user==null)
-				return new ApiResponse("Invalid Email and Password");
+				throw new ApiException("User not found");
 				
 			if(cdto.getEmail().equals(user.getEmail()))
 			{
@@ -113,16 +113,18 @@ public class UserServiceImpl implements UserService
 				   System.out.println("Role: "+user.getRole());
 				   if(cdto.getRole().equals(user.getRole()))
 				   {
-					   session.setAttribute("customer", cdto);
-					   System.out.println("session: "+session);
-					   return new ApiResponse("customer");
+//					   session.setAttribute("customer", user.getId());
+//					   String userId = (String) session.getAttribute("userId");
+					   System.out.println("session: "+user);
+					   return mapper.map(user, UserDTO.class);
 					   
 				   }
 				   else
 				   {
-					   session.setAttribute("admin", cdto);
-					   System.out.println("session: "+session);
-					   return new ApiResponse("admin");
+//					   session.setAttribute("admin", cdto);
+//					   String userId = (String) session.getAttribute("userId");
+					   System.out.println("session: "+user);
+					   return mapper.map(user, UserDTO.class);
 				   }
 				}
 				else
@@ -133,9 +135,36 @@ public class UserServiceImpl implements UserService
 			}
 			else
 			{
-				return new ApiResponse("Invalid Email");
+				throw new ApiException("Valid User");
 			}
-			return new ApiResponse("success");
+			throw new ApiException("Success");
 		}
+	
+	public ApiResponse updatePassword(String email, String newPassword) {
+        // Retrieve the user from the database based on the email
+		System.out.println("email and password: "+email+newPassword);
+        User user = uDao.findByEmail(email);
+        System.out.println(user);
+        if (user == null) {
+            // Handle the case where the user does not exist
+            throw new ApiException("User not found for email: " + email);
+        }
+        
+        // Set the new password for the user
+        user.setPassword(newPassword);
+        
+        // Save the updated user entity back to the database
+        uDao.save(user);
+        return new ApiResponse("Password reset successfully");
+    }
+
+	@Override
+	public UserDTO getUserById(Long userId) {
+	    User user = uDao.findById(userId).orElse(null);
+	    if (user != null) {
+	        return mapper.map(user, UserDTO.class);
+	    } else {
+	        return null; // Or you can throw an exception if needed
+	    }
 	}
-}
+	}

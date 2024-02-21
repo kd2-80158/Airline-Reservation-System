@@ -12,4 +12,6 @@ public interface ReservationService {
 
 	ApiResponse deleteBooking(Long id);
 
+	boolean updatePaymentStatus(Long reservationId);
+
 }

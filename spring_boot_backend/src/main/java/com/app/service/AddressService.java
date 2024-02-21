@@ -10,12 +10,12 @@ import com.app.dto.ApiResponse;
 
 public interface AddressService {
 
-	ApiResponse assignEmpAddress(@NotNull Long empId, @Valid AddressDTO address);
+	ApiResponse addAddress(@NotNull Long usersId, @Valid AddressDTO address);
 
 	AddressDTO getAddressDetails(Long addressId);
 
-	ApiResponse updateEmpAddress( Long custId, @Valid AddressDTO address);
+	ApiResponse updateAddress( Long usersId, @Valid AddressDTO address);
 
-	AddressDTO patchEmpAddress(@NotNull Long custId, Map<String, Object> map);
+	AddressDTO patchEmpAddress(@NotNull Long usersId, Map<String, Object> map);
 
 }

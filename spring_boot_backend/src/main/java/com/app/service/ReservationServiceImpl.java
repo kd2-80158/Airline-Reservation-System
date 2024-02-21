@@ -2,7 +2,6 @@ package com.app.service;
 
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
@@ -16,6 +15,7 @@ import com.app.dao.UserDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.ReservationDTO;
 import com.app.entities.Flight;
+import com.app.entities.PaymentStatus;
 import com.app.entities.Reservation;
 import com.app.entities.User;
 
@@ -35,8 +35,6 @@ public class ReservationServiceImpl implements ReservationService {
 	@Autowired
 	private ModelMapper mapper;
 	
-	@Autowired
-	private HttpSession httpsession;
 
 	@Override
 	public ReservationDTO addNewBooking(ReservationDTO rdto) {
@@ -46,8 +44,8 @@ public class ReservationServiceImpl implements ReservationService {
 //		System.out.println("User: "+user);
 //		System.out.println("User id: "+userId);
 		System.out.println("Reser service : "+ rdto);
-		User user = uDao.findById(rdto.getUserId()).orElseThrow(() -> new ApiException("User id not found"));
-		Flight flight = fDao.findById(rdto.getFlightid()).orElseThrow(()-> new ApiException("flight id not found"));
+		User user = uDao.findById(rdto.getUsersId()).orElseThrow(() -> new ApiException("User id not found"));
+		Flight flight = fDao.findById(rdto.getFlightId()).orElseThrow(()-> new ApiException("flight id not found"));
 		Reservation reservationEntity = mapper.map(rdto, Reservation.class);
 		user.addReservation(reservationEntity);
 		flight.addReservation(reservationEntity);
@@ -62,7 +60,7 @@ public class ReservationServiceImpl implements ReservationService {
 		Reservation reservation = rDao.findById(id).orElseThrow(()-> new ApiException("No such reservation id found"));
 		
 		reservation.setReservationDate(rdto.getReservationDate());
-		reservation.setPStatus(rdto.getPStatus());
+		reservation.setPaymentStatus(rdto.getPaymentStatus());
 		reservation.setTotalPrice(rdto.getTotalPrice());
 	    return mapper.map(reservation, ReservationDTO.class);
 	}
@@ -76,4 +74,17 @@ public class ReservationServiceImpl implements ReservationService {
 		}
 		return new ApiResponse("Reservation is deleted");
 	}
+    @Override
+    public boolean updatePaymentStatus(Long reservationId) {
+        // Find the reservation by its ID
+        Reservation reservation = rDao.findById(reservationId).orElse(null);
+        if (reservation != null) {
+            // Update the payment status to "Completed"
+        	reservation.setPaymentStatus(PaymentStatus.COMPLETED);
+            // Save the updated reservation
+            rDao.save(reservation);
+            return true; // Return true indicating success
+        }
+        return false; // Return false indicating failure
+    }
 }

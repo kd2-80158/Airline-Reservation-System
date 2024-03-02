@@ -1,2 +1,2 @@
-Welcome to Airyatri!
-This is a basic demonstration to book a flight ticket if you are logged in as a customer. There is an admin panel which is dedicated to the admin to add a schedule to a flight, modify it, and set the base price of the seat according to its class.
+Welcome aboard Airyatri!
+Here, we're giving you a sneak peek into the fascinating world of flight bookings. If you're cruising along as a customer, buckle up for a basic demo on how to snag that perfect flight ticket. Meanwhile, our esteemed admins are chilling in their secret lair, armed with powers to craft flight schedules, tweak them to perfection, and even play with the price tags on those cozy seats. So fasten your seatbelt and get ready for an adventure in the skies! 🛫✨
